@@ -37,7 +37,18 @@ export function Countdown(){
                 </div>
             </div>
             <button onClick={startCountdown} type="button" className={active ? styles.countdownPauseButton : styles.countdownButton} >
-                {active ? "Pausar" : "Iniciar timer"}
+                {
+                    active ? 
+                    <div>                        
+                        <p>Abandonar ciclo</p> 
+                        <img src="icons/close.svg" alt="Close"/>
+                    </div>
+                    : 
+                    <div>
+                        <p>Iniciar timer</p>
+                        <img src="icons/play_arrow.svg" alt="Play"/>
+                    </div>
+                }
             </button>
         </div>
     );

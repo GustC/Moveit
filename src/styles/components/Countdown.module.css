@@ -60,6 +60,15 @@
     background: var(--blue-dark);
 }
 
+.countdownButton > div {
+    flex-direction: row;
+    display: flex;
+}
+
+.countdownButton > div > p{
+    padding-right: 0.8rem
+}
+
 .countdownPauseButton{
     width: 100%;
     height: 5rem;
@@ -81,4 +90,14 @@
 
 .countdownPauseButton:hover {
     background: var(--red-dark);
+}
+
+.countdownPauseButton > div {
+    flex-direction: row;
+    display: flex;
+    align-items: center
+}
+
+.countdownPauseButton > div svg path{
+    fill: green;
 }
