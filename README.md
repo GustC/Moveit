@@ -1,4 +1,4 @@
-Aplicação criada durante a NLW[https://nextlevelweek.com/](NextLevelWeek) utilizada na trilha de React. Utilizando React, Typescript e NextJs para o desenvolvimento.
+Aplicação criada durante a NLW [NextLevelWeek](https://nextlevelweek.com/) utilizada na trilha de React. Utilizando React, Typescript e NextJs para o desenvolvimento.
 
 ## Getting Started
 
