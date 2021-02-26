@@ -84,4 +84,4 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 Feito por Gustavo Cesar 👋🏽 Entre em contato!
 
-[![Linkedin Badge](https://img.shields.io/badge/-Gustavo-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/gustavo-cesar-390522187/)](https://www.linkedin.com/in/gustavo-cesar/) 
+[![Linkedin Badge](https://img.shields.io/badge/-Gustavo-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/gustavo-cesar-390522187/)](https://www.linkedin.com/in/gustavo-cesar-390522187/) 
