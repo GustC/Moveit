@@ -25,7 +25,7 @@ export default function Login(){
 export const getServerSideProps : GetServerSideProps = async (ctx) => {
     const { code } = ctx.query;
     if(code){
-        var response = await axios.post("http://localhost:3000/api/login",{ code : code});
+        var response = await axios.post(`${process.env.API_ROUTE}/login`,{ code : code});
         
         if(response.status == 200){
             return {

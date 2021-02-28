@@ -2,30 +2,19 @@ import { GetServerSideProps } from "next";
 import Home from "./home";
 import Login from "./login";
 
-interface AppProps {
-    isLooged : boolean
-}
 
 
-export default function Index(props : AppProps){
-    const {isLooged} = props; 
+export default function Index(){
 
-    if(isLooged){
-        return (
-            <Home currentExperience={null} level={null} challengesCompleted={null}/>
-        )
-    } else {
-        return (
-            <Login/>
-        )
-    }
+    return (
+        <Login/>
+    )
 }
 
 export const getServerSideProps : GetServerSideProps = async (ctx) => {
     const {isLogged} = ctx.req.cookies;
+    
     return {
-        props : {
-            isLogged : Boolean(isLogged)
-        }
+        props : {}
     };
   }

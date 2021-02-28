@@ -19,8 +19,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if(req.method == "POST"){
         const {code} = req.body;
         var response = await axios.post('https://github.com/login/oauth/access_token',{
-            client_id : "77f6f5bb614d2e61b443",
-            client_secret : "0fda6d68c26d33813e752b157ccc15c73cf3828b",
+            client_id : process.env.GIT_CLIENT_KEY,
+            client_secret : process.env.GIT_CLIENT_SECRET,
             code : code,
         },{
             headers : {
@@ -54,7 +54,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         }
     } else if (req.method == "GET" ){
         const {code} = req.query;
-        res.redirect(`http://localhost:3000/login?code=${code}`)
+        res.redirect(`${process.env.HOSTNAME}/login?code=${code}`)
         return;
     }
 }
