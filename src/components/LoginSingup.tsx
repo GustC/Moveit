@@ -1,4 +1,4 @@
-import Router from 'next/router';
+import Router,{useRouter} from 'next/router';
 import { useState } from 'react';
 import styles from '../styles/components/LoginSingup.module.css';
 
@@ -13,22 +13,14 @@ export function LoginSingup() {
         event.preventDefault()
         if(username.length > 0){
             // solicitar auth com o github
+            Router.replace(`https://github.com/login/oauth/authorize?client_id=77f6f5bb614d2e61b443&login=${username}`, "Autenticação GitHub");
             // caso sucesso -> redirect home
             // caso fail -> nao entra
-            Router.push("/home")
+            // Router.push("/home")
         }
     }
-
-    async function tapGit(){
-        // await axios.get("https://github.com/login/oauth/authorize",{
-        //     headers : { "Access-Control-Allow-Origin" : "*"},
-        //     data : {
-        //         client_id : "77f6f5bb614d2e61b443",
-                
-        //         // login : username,
-        //     }
-        // }).then((v)=>console.log(v)).catch((e)=>console.log(e));
-    }
+    var router = useRouter();
+    const { code } = router.query;
 
     return (
         <form onSubmit={ submit } >
@@ -36,7 +28,7 @@ export function LoginSingup() {
                 <img src="./logo-full-white.svg"/>
                 <div>
                     <strong>Bem vindo</strong>
-                    <div className={styles.gitContainer} onClick={tapGit}>
+                    <div className={styles.gitContainer} onClick={submit}>
                         <img src="./icons/github.svg"/>
                         <p>Faça login com seu Github para começar</p>
                     </div>
