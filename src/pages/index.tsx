@@ -12,7 +12,7 @@ export default function Index(props : AppProps){
 
     if(isLooged){
         return (
-            <Home currentExperience={null} level={null} challengesCompleted={null}/>
+            <Home currentExperience={null} level={null} challengesCompleted={null} gitUser={null}/>
         )
     } else {
         return (

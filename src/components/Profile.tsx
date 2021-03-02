@@ -3,12 +3,12 @@ import { ChallengesContext } from '../contexts/challengesContext';
 import styles from '../styles/components/Profile.module.css';
 
 export function Profile(){
-    const {level} = useContext(ChallengesContext);
+    const {level, gitUser } = useContext(ChallengesContext);
     return (
         <div className={styles.profileContainer}>
-            <img src="https://github.com/GustC.png" alt="Gustavo Cesar"/>
+            <img src={gitUser.avatar_url.toString()} alt={gitUser.avatar_url.toString()}/>
             <div>
-                <strong>Gustavo Cesar</strong>                
+                <strong>{gitUser.name}</strong>                
                 <p>
                     <img src="icons/level.svg" alt="Level"/>
                     Level {level}

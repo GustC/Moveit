@@ -5,11 +5,18 @@ import { LevelUpModal } from '../components/LevelUpModal';
 
 export const ChallengesContext = createContext({} as ChallengesProviderData);
 
+interface GitUser {
+    id : Number,
+    name : String,
+    avatar_url: String,
+}
+
 interface ChallengesProviderProps{
     children: ReactNode;
     level : number,
     currentExperience : number,
     challengesCompleted : number,
+    gitUser : GitUser,
 }
 
 interface ChallengesProviderData{
@@ -24,6 +31,7 @@ interface ChallengesProviderData{
     completeChallenge : ()=>void;   
     isLevelUpModalOpen : boolean; 
     closeLevelUpModal : ()=>void;   
+    gitUser : GitUser;
 }
 
 interface ChallengeData {
@@ -41,6 +49,7 @@ export function ChallengesProvider({
     const [challengesCompleted, setChallengesCompleted] = useState(rest.challengesCompleted ?? 0);
     const [isLevelUpModalOpen, setIsLevelModalOpen] = useState(false);
     const [activeChallenge, setActiveChallenge] = useState(null);
+    const [gitUser, setGitUser] = useState(rest.gitUser);
 
     const experienceToNextLevel = Math.pow((level + 1) * 4 , 2)
 
@@ -110,6 +119,7 @@ export function ChallengesProvider({
             completeChallenge,
             isLevelUpModalOpen,
             closeLevelUpModal,
+            gitUser,
         }}>
         {children}
         { isLevelUpModalOpen && <LevelUpModal/>}

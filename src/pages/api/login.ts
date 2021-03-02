@@ -47,6 +47,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
                 res.send(gitUser);
                 return;
+            } else {
+                res.send("Ocorreu um error");
+                return;
             }
 
         } else {

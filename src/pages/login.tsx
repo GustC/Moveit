@@ -25,20 +25,14 @@ export default function Login(){
 export const getServerSideProps : GetServerSideProps = async (ctx) => {
     const { code } = ctx.query;
     if(code){
-        var response = await axios.post("http://localhost:3000/api/login",{ code : code});
-        
-        if(response.status == 200){
-            return {
-                redirect: {
-                  destination: '/home',
-                  permanent: false,
-                },
-                props : {
-                    user : response.data,
-                }
-            }
-        }
+        return {
+            redirect: {
+              destination: `/home?user_code=${code}`,
+              permanent: false,
+            },
+        };        
     }
+        
     return {
         props : {
             
