@@ -1,3 +1,4 @@
+import { GetServerSideProps } from "next";
 import "../styles/global.css";
 
 function MyApp({ Component, pageProps }) {

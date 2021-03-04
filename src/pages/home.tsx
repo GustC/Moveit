@@ -1,3 +1,4 @@
+import axios from "axios";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
 import { Challenge } from "../components/Challenge";
@@ -7,21 +8,21 @@ import { ExperienceBar } from "../components/ExperienceBar";
 import { Profile } from "../components/Profile";
 import { ChallengesProvider } from "../contexts/challengesContext";
 import { CountdownProvider } from "../contexts/countdownContext";
+import { User } from "../interfaces/userInterfaces";
 
 import styles from '../styles/pages/Home.module.css';
 
 interface HomeProps {
-  level : number,
-  currentExperience : number,
-  challengesCompleted : number,
+  user : User
 }
 
 export default function Home(props : HomeProps) {
+  const {user} = props;
   return (
     <ChallengesProvider 
-      level={props.level}
-      currentExperience={props.currentExperience}
-      challengesCompleted={props.challengesCompleted}
+      level={user.level}
+      currentExperience={user.current_experience}
+      challengesCompleted={user.challenges_completed}
     >
     <div className={styles.container}>      
       <Head>
@@ -31,7 +32,11 @@ export default function Home(props : HomeProps) {
       <CountdownProvider>
         <section>
           <div >
-            <Profile/>
+            <Profile 
+              level={user.level}
+              name={user.name}
+              avatar_url={user.avatar_url}
+            />
             <CompleteChallenges/>
             <Countdown/>
           </div>
@@ -46,12 +51,24 @@ export default function Home(props : HomeProps) {
 }
 
 export const getServerSideProps : GetServerSideProps = async (ctx) => {
-  const {level,currentExperience,challengesCompleted} = ctx.req.cookies;
+  const {level,currentExperience,challengesCompleted,user_id} = ctx.req.cookies;
+  const {user} = ctx.query;
+  console.log("Usuario", user);
+  var response = await axios.get(`${process.env.API_ROUTE}/user/${user}`);
+  if(response.status == 200){
+    var userData : User;
+    userData = response.data;
+  } else {
+    return {
+      redirect : {
+        destination: `/login`,
+        permanent: false,
+      }
+    }
+  }
   return {
     props : {
-      level : Number(level),
-      currentExperience : Number(currentExperience),
-      challengesCompleted : Number(challengesCompleted),
+      user : userData
     }
   };
 }

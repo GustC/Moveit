@@ -10,6 +10,8 @@
   "dependencies": {
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
+    "firebase": "^8.2.9",
+    "firebaseui": "^4.7.3",
     "js-cookie": "^2.2.1",
     "next": "10.0.7",
     "react": "17.0.1",

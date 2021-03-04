@@ -1,7 +1,9 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import { GetServerSideProps } from 'next';
 import { LoginSingup } from '../components/LoginSingup';
 import styles from '../styles/pages/Login.module.css';
+import { firebaseInit } from '../utils/firebase';
 
 interface GitUser {
     id : Number,
@@ -12,6 +14,7 @@ interface GitUser {
 export default function Login(){
     return (
         <div className={styles.container}>
+            
             <section>
                 <div>
                     <img src="./background-logo.svg"/>                
@@ -28,9 +31,10 @@ export const getServerSideProps : GetServerSideProps = async (ctx) => {
         var response = await axios.post(`${process.env.API_ROUTE}/login`,{ code : code});
         
         if(response.status == 200){
+            Cookies.set("user_id",String(response.data.id));
             return {
                 redirect: {
-                  destination: '/home',
+                  destination: `/home?user=${response.data.id}`,
                   permanent: false,
                 },
                 props : {

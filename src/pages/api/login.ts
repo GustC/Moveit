@@ -1,18 +1,11 @@
 import axios from 'axios';
-import bodyParser from 'body-parser';
 import { NextApiRequest, NextApiResponse } from 'next'
+import { GitResponseAuth, GitUser } from '../../interfaces/gitInterfaces';
+import { User } from '../../interfaces/userInterfaces';
+import { getDatabase } from '../../utils/firebase';
 
-interface GitResponseAuth {
-    access_token : String,
-    scope : String,
-    token_type : String
-}
+const db = getDatabase();
 
-interface GitUser {
-    id : Number,
-    name : String,
-    avatar_url: String,
-}
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     
@@ -45,7 +38,28 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
                     id : response.data.id,
                 };
 
-                res.send(gitUser);
+                var user = await getUser(gitUser);
+                var userData : User;
+                console.log(user)                
+                if(user){
+                    userData = {
+                        id : user.data().id,
+                        name : user.data().name,
+                        level : user.data().level,
+                        avatar_url : user.data().avatar_url,
+                        challenges_completed : user.data().challenges_completed,
+                        current_experience : user.data().current_experience,
+                    };
+                } else {
+                    userData = {
+                        ...gitUser,
+                        level : 1,
+                        challenges_completed : 0,
+                        current_experience : 0,
+                    };
+                    await saveUser(userData);
+                }
+                res.send(userData);
                 return;
             }
 
@@ -58,4 +72,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         return;
     }
 }
+
+const saveUser = async (user:User) => {
+    return db.collection('users').add({...user});
+}
+
+const getUser = async (user:GitUser) => {    
+    return (await db.collection('users').where('id','==',user.id).get()).docs[0];
+}
+
 export default handler;

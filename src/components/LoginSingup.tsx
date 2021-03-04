@@ -1,9 +1,13 @@
 import Router,{useRouter} from 'next/router';
 import { useState } from 'react';
 import styles from '../styles/components/LoginSingup.module.css';
+import { getDatabase } from '../utils/firebase';
+
 
 export function LoginSingup() {
     const [username,setUsername] = useState("");
+
+    
 
     function changeUsername(event){
         setUsername(event.target.value);
@@ -22,13 +26,17 @@ export function LoginSingup() {
     var router = useRouter();
     const { code } = router.query;
 
+    function verifyUser(){
+        console.log(getDatabase());
+    }
+
     return (
         <form onSubmit={ submit } >
             <div className={styles.container}>
                 <img src="./logo-full-white.svg"/>
                 <div>
                     <strong>Bem vindo</strong>
-                    <div className={styles.gitContainer} onClick={submit}>
+                    <div className={styles.gitContainer} onClick={verifyUser}>
                         <img src="./icons/github.svg"/>
                         <p>Faça login com seu Github para começar</p>
                     </div>
