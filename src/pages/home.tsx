@@ -12,6 +12,12 @@ import { User } from "../interfaces/userInterfaces";
 
 import styles from '../styles/pages/Home.module.css';
 
+interface GitUser {
+  id : Number,
+  name : String,
+  avatar_url: String,
+}
+
 interface HomeProps {
   user : User
 }

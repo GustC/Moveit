@@ -61,6 +61,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
                 }
                 res.send(userData);
                 return;
+            } else {
+                res.send("Ocorreu um error");
+                return;
             }
 
         } else {
