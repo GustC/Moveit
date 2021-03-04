@@ -2,35 +2,10 @@ import { createContext, ReactNode, useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import challenges from '../../challenges.json';
 import { LevelUpModal } from '../components/LevelUpModal';
+import { ChallengesProviderData, ChallengesProviderProps } from '../interfaces/challengeInterfaces';
 
 export const ChallengesContext = createContext({} as ChallengesProviderData);
 
-interface ChallengesProviderProps{
-    children: ReactNode;
-    level : number,
-    currentExperience : number,
-    challengesCompleted : number,
-}
-
-interface ChallengesProviderData{
-    level: number;
-    currentExperience : number;
-    challengesCompleted : number;
-    levelUp : ()=>void;
-    startNewChallenge : ()=>void;
-    resetChallenge : ()=>void;    
-    activeChallenge : ChallengeData
-    experienceToNextLevel : number;
-    completeChallenge : ()=>void;   
-    isLevelUpModalOpen : boolean; 
-    closeLevelUpModal : ()=>void;   
-}
-
-interface ChallengeData {
-    type: 'body' | 'eye';
-    description : string;
-    amount: number;
-}
 
 export function ChallengesProvider({ 
     children, 

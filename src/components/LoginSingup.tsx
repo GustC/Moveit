@@ -13,7 +13,7 @@ export function LoginSingup() {
         event.preventDefault()
         if(username.length > 0){
             // solicitar auth com o github
-            Router.replace(`https://github.com/login/oauth/authorize?client_id=77f6f5bb614d2e61b443&login=${username}`, "Autenticação GitHub");
+            Router.replace(`https://github.com/login/oauth/authorize?client_id=${process.env.GIT_CLIENT_KEY}&login=${username}`, "Autenticação GitHub");
             // caso sucesso -> redirect home
             // caso fail -> nao entra
             // Router.push("/home")
