@@ -63,7 +63,7 @@ Abra [http://localhost:3000](http://localhost:3000) em seu navegador para utiliz
 
 Caso deseje visualizar aplicação antes de instalar, você pode acessar o <a href="https://moveit-ten-sigma.vercel.app/">link da aplicação</a> que esta hospedada na Vercel.
 
-### 🛠 Tecnologias
+### Tecnologias
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
